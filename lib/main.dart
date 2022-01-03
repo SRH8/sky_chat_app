@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sky_chat_app/screens/screens.dart';
 
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -16,11 +17,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Sky',
       routes: {
-        'onboard' : (_) => const OnboardScreen(),
-        'login' : (_) => const LoginScreen(),
-        'signup' : (_) => const SignUpScreen(),
-        'chatlist' : (_) => const ChatListScreen(),
-        'chat' : (_) => const ChatScreen(),
+        'onboard' : (_) =>  OnboardScreen(),
+        'login' : (_) =>  LoginScreen(),
+        'signup' : (_) =>  SignUpScreen(),
+        'searchuser' : (_)  => SearchUserScreen(),
+        'chatlist' : (_) =>  ChatListScreen(),
+        'chat' : (_) =>  ChatScreen(),
       },
       initialRoute: 'onboard',
      
