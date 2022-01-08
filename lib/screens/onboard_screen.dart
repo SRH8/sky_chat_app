@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:sky_chat_app/preferences/user_preferences.dart';
 
 
 class OnboardScreen extends StatelessWidget {
@@ -39,6 +40,7 @@ class OnboardScreen extends StatelessWidget {
         done: const Text('Empezar', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),),
         onDone: (){
           Navigator.of(context).pushReplacementNamed('login');
+          UserPreferences.setSkipOnboarding(true);
         },
         dotsDecorator: getDotDecorator(),
       ),
@@ -67,6 +69,7 @@ class OnboardScreen extends StatelessWidget {
   Widget getTextButton(context) => ElevatedButton(
     onPressed: (){
       Navigator.of(context).pushReplacementNamed('login');
+      UserPreferences.setSkipOnboarding(true);
     },
     child: const Text('Empezar',style: TextStyle(fontSize: 20, color: Colors.white),),
     style: ElevatedButton.styleFrom(
