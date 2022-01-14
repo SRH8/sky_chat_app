@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sky_chat_app/preferences/user_preferences.dart';
 import 'package:sky_chat_app/screens/screens.dart';
 
 
