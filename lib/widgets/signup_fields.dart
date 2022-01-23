@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:sky_chat_app/ui/text_field_input_decoration.dart';
 
-class LoginFields extends StatelessWidget {
-  const LoginFields({Key? key}) : super(key: key);
+class SignUpFields extends StatelessWidget {
+  const SignUpFields({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +11,7 @@ class LoginFields extends StatelessWidget {
         _Form(),
         SizedBox(height: 10,),
         ElevatedButton(
-          child: Text('Iniciar sesión', style: TextStyle(fontSize: 16,),),
+          child: Text('Crear cuenta', style: TextStyle(fontSize: 16,),),
           onPressed: (){},
           style: ElevatedButton.styleFrom(
             padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
@@ -20,19 +19,6 @@ class LoginFields extends StatelessWidget {
           primary: Colors.indigo
             ),
          ),                
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('¿No tienes una cuenta?'), 
-            TextButton(
-              onPressed: (){
-                Navigator.of(context).pushNamed('signup');
-              },
-              child: Text('Crear cuenta', style: TextStyle(color: Colors.indigo),)
-              )
-          ],
-        ),
-        
       ],
     );
   }
@@ -81,6 +67,7 @@ class _FormFields extends StatelessWidget {
                 prefixIcon: Icons.email_rounded
              )
             ),
+            SizedBox(height: 15,),
             TextFormField(
               autocorrect: false,
               enableSuggestions: false,
@@ -100,12 +87,29 @@ class _FormFields extends StatelessWidget {
                 prefixIcon: Icons.lock_clock_rounded
              )
             ),
+            TextFormField(
+              autocorrect: false,
+              enableSuggestions: false,
+              maxLength: 18,
+              obscureText: true,
+              obscuringCharacter: '*',
+              keyboardType: TextInputType.text,
+              validator: (value){
 
+              },
+              onChanged: (value){
 
-
+              },
+              decoration: TextFieldInputDecoration.loginInputDecoration(
+                hintText:'Mínimo 6 caracteres',
+                labelText: "Repetir contraseña",
+                prefixIcon: Icons.lock_clock_rounded
+             )
+            ),
           ],
         ),
       ),
     );
   }
 }
+  

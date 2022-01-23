@@ -26,8 +26,7 @@ class TextFieldInputDecoration {
       hintText: hintText,
       labelText: labelText,
       labelStyle: TextStyle(color: Colors.grey),
-      prefixIcon: prefixIcon!=null ?
-                      Icon(prefixIcon, color: Colors.indigo,) : null,
+      prefixIcon: prefixIcon!=null ? Icon(prefixIcon, color: Colors.indigo,) : null,
     );
   }
 }
