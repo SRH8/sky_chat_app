@@ -26,9 +26,9 @@ class LoginFields extends StatelessWidget {
             Text('¿No tienes una cuenta?'), 
             TextButton(
               onPressed: (){
-                Navigator.of(context).pushNamed('signup');
+                Navigator.of(context).pushReplacementNamed('signup');
               },
-              child: Text('Crear cuenta', style: TextStyle(color: Colors.indigo),)
+              child: Text('Crear cuenta', style: TextStyle(color: Colors.indigo,),)
               )
           ],
         ),

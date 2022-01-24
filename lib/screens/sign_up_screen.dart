@@ -29,7 +29,18 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 10,),
                 SignUpFields(),
-
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('¿Ya tienes una cuenta?'), 
+                    TextButton(
+                      onPressed: (){
+                      Navigator.of(context).pushReplacementNamed('login');
+                    },
+                      child: Text('Iniciar sesión', style: TextStyle(color: Colors.indigo),)
+                    )
+                  ],
+               ),
               ],
             ),
           ),
