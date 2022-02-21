@@ -10,29 +10,7 @@ class LoginFields extends StatelessWidget {
     return Column(
       children: [
         _Form(),
-        SizedBox(height: 10,),
-        ElevatedButton(
-          child: Text('Iniciar sesión', style: TextStyle(fontSize: 16,),),
-          onPressed: (){},
-          style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-            elevation: 4,
-          primary: Colors.indigo
-            ),
-         ),                
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('¿No tienes una cuenta?'), 
-            TextButton(
-              onPressed: (){
-                Navigator.of(context).pushReplacementNamed('signup');
-              },
-              child: Text('Crear cuenta', style: TextStyle(color: Colors.indigo,),)
-              )
-          ],
-        ),
-        
+        SizedBox(height: 10,),           
       ],
     );
   }
@@ -70,7 +48,7 @@ class _FormFields extends StatelessWidget {
               enableSuggestions: false,
               keyboardType: TextInputType.emailAddress,
               validator: (value){
-
+                
               },
               onChanged: (value){
 
@@ -100,9 +78,15 @@ class _FormFields extends StatelessWidget {
                 prefixIcon: Icons.lock_clock_rounded
              )
             ),
-
-
-
+            ElevatedButton(
+              child: Text('Iniciar sesión', style: TextStyle(fontSize: 16,),),
+              onPressed: (){},
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                elevation: 4,
+              primary: Colors.indigo
+                ),
+            ),     
           ],
         ),
       ),

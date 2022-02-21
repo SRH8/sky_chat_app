@@ -9,16 +9,7 @@ class SignUpFields extends StatelessWidget {
     return Column(
       children: [
         _Form(),
-        SizedBox(height: 10,),
-        ElevatedButton(
-          child: Text('Crear cuenta', style: TextStyle(fontSize: 16,),),
-          onPressed: (){},
-          style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-            elevation: 4,
-          primary: Colors.indigo
-            ),
-         ),                
+                 
       ],
     );
   }
@@ -106,6 +97,19 @@ class _FormFields extends StatelessWidget {
                 prefixIcon: Icons.lock_clock_rounded
              )
             ),
+            ElevatedButton(
+              child: Text('Crear cuenta', style: TextStyle(fontSize: 16,),),
+              onPressed: (){
+
+
+            
+              },
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                elevation: 4,
+              primary: Colors.indigo
+               ),
+            ),       
           ],
         ),
       ),

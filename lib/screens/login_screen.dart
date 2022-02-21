@@ -29,7 +29,18 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 10,),
                 LoginFields(),
-
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('¿No tienes una cuenta?'), 
+                    TextButton(
+                      onPressed: (){
+                        Navigator.of(context).pushReplacementNamed('signup');
+                      },
+                      child: Text('Crear cuenta', style: TextStyle(color: Colors.indigo,),)
+                      )
+                  ],
+                ),
               ],
             ),
           ),
