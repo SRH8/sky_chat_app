@@ -33,14 +33,21 @@ class _Form extends StatelessWidget {
 }
 
 
-class _FormFields extends StatelessWidget {
+class _FormFields extends StatefulWidget {
   const _FormFields({Key? key}) : super(key: key);
 
+  @override
+  State<_FormFields> createState() => _FormFieldsState();
+}
+
+class _FormFieldsState extends State<_FormFields> {
+  final _loginFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Form(
+        key: _loginFormKey,
         child: Column(
           children: [
             TextFormField(
