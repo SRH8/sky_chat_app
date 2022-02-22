@@ -52,6 +52,23 @@ class _FormFieldsState extends State<_FormFields> {
             TextFormField(
               autocorrect: false,
               enableSuggestions: false,
+              keyboardType: TextInputType.text,
+              validator: (value){
+
+              },
+              onChanged: (value){
+
+              },
+              decoration: TextFieldInputDecoration.loginInputDecoration(
+                hintText:'',
+                labelText: "Nombre",
+                prefixIcon: Icons.person
+             )
+            ),
+            SizedBox(height: 15,),
+            TextFormField(
+              autocorrect: false,
+              enableSuggestions: false,
               keyboardType: TextInputType.emailAddress,
               validator: (value){
 
