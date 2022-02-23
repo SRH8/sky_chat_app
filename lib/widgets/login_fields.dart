@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:sky_chat_app/ui/text_field_input_decoration.dart';
 
@@ -10,7 +9,9 @@ class LoginFields extends StatelessWidget {
     return Column(
       children: [
         _Form(),
-        SizedBox(height: 10,),           
+        SizedBox(
+          height: 10,
+        ),
       ],
     );
   }
@@ -32,7 +33,6 @@ class _Form extends StatelessWidget {
   }
 }
 
-
 class _FormFields extends StatefulWidget {
   const _FormFields({Key? key}) : super(key: key);
 
@@ -51,51 +51,52 @@ class _FormFieldsState extends State<_FormFields> {
         child: Column(
           children: [
             TextFormField(
-              autocorrect: false,
-              enableSuggestions: false,
-              keyboardType: TextInputType.emailAddress,
-              validator: (value){
-                
-              },
-              onChanged: (value){
+                autocorrect: false,
+                enableSuggestions: false,
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  String pattern =
+                      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                  RegExp regExp = new RegExp(pattern);
 
-              },
-              decoration: TextFieldInputDecoration.loginInputDecoration(
-                hintText:'',
-                labelText: "Correo electrónico",
-                prefixIcon: Icons.email_rounded
-             )
-            ),
+                  return !regExp.hasMatch(value ?? '')? 'Correo no válido': null;
+                },
+                onChanged: (value) {},
+                decoration: TextFieldInputDecoration.loginInputDecoration(
+                    hintText: '',
+                    labelText: "Correo electrónico",
+                    prefixIcon: Icons.email_rounded)),
             TextFormField(
-              autocorrect: false,
-              enableSuggestions: false,
-              maxLength: 18,
-              obscureText: true,
-              obscuringCharacter: '*',
-              keyboardType: TextInputType.text,
-              validator: (value){
+                autocorrect: false,
+                enableSuggestions: false,
+                maxLength: 18,
+                obscureText: true,
+                obscuringCharacter: '*',
+                keyboardType: TextInputType.text,
+                validator: (value) {
+                  String pattern = r'.{8,}'; 
+                  RegExp regExp = new RegExp(pattern);
 
-              },
-              onChanged: (value){
-
-              },
-              decoration: TextFieldInputDecoration.loginInputDecoration(
-                hintText:'Mínimo 6 caracteres',
-                labelText: "Contraseña",
-                prefixIcon: Icons.lock_clock_rounded
-             )
-            ),
+                  return !regExp.hasMatch(value ?? '')? 'La contraseña es demasiado corta': null;
+                },
+                onChanged: (value) {},
+                decoration: TextFieldInputDecoration.loginInputDecoration(
+                    hintText: 'Mínimo 8 caracteres',
+                    labelText: "Contraseña",
+                    prefixIcon: Icons.lock_clock_rounded)),
             ElevatedButton(
-              child: Text('Iniciar sesión', style: TextStyle(fontSize: 16,),),
-              onPressed: (){
-                
-              },
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                elevation: 4,
-              primary: Colors.indigo
+              child: Text(
+                'Iniciar sesión',
+                style: TextStyle(
+                  fontSize: 16,
                 ),
-            ),     
+              ),
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  elevation: 4,
+                  primary: Colors.indigo),
+            ),
           ],
         ),
       ),
