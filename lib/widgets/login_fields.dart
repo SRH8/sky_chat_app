@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sky_chat_app/providers/providers.dart';
 import 'package:sky_chat_app/ui/text_field_input_decoration.dart';
+import 'package:provider/provider.dart';
 
 class LoginFields extends StatelessWidget {
   const LoginFields({Key? key}) : super(key: key);
@@ -42,8 +44,12 @@ class _FormFields extends StatefulWidget {
 
 class _FormFieldsState extends State<_FormFields> {
   final _loginFormKey = GlobalKey<FormState>();
+  String? _email;
+  String? _password;
+  late AuthenticatorProvider _auth;
   @override
   Widget build(BuildContext context) {
+    _auth = Provider.of<AuthenticatorProvider>(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Form(
@@ -54,14 +60,18 @@ class _FormFieldsState extends State<_FormFields> {
                 autocorrect: false,
                 enableSuggestions: false,
                 keyboardType: TextInputType.emailAddress,
-                validator: (value) {
+                validator: (_value) {
                   String pattern =
                       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                   RegExp regExp = new RegExp(pattern);
 
-                  return !regExp.hasMatch(value ?? '')? 'Correo no válido': null;
+                  return !regExp.hasMatch(_value ?? '')? 'Correo no válido': null;
                 },
-                onChanged: (value) {},
+                onSaved: (_value) {
+                  setState(() {
+                    _email = _value;
+                  });
+                },
                 decoration: TextFieldInputDecoration.loginInputDecoration(
                     hintText: '',
                     labelText: "Correo electrónico",
@@ -73,13 +83,17 @@ class _FormFieldsState extends State<_FormFields> {
                 obscureText: true,
                 obscuringCharacter: '*',
                 keyboardType: TextInputType.text,
-                validator: (value) {
+                validator: (_value) {
                   String pattern = r'.{8,}'; 
                   RegExp regExp = new RegExp(pattern);
 
-                  return !regExp.hasMatch(value ?? '')? 'La contraseña es demasiado corta': null;
+                  return !regExp.hasMatch(_value ?? '')? 'La contraseña es demasiado corta': null;
                 },
-                onChanged: (value) {},
+                onSaved: (_value) {
+                  setState(() {
+                    _password = _value;
+                  });
+                },
                 decoration: TextFieldInputDecoration.loginInputDecoration(
                     hintText: 'Mínimo 8 caracteres',
                     labelText: "Contraseña",
@@ -91,7 +105,12 @@ class _FormFieldsState extends State<_FormFields> {
                   fontSize: 16,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                if(_loginFormKey.currentState!.validate()){
+                  _loginFormKey.currentState!.save();
+                  _auth.loginUsingEmailAndPassword(_email!, _password!);
+                }
+              },
               style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   elevation: 4,
