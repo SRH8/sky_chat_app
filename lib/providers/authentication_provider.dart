@@ -6,19 +6,29 @@ import 'package:sky_chat_app/services/services.dart';
 class AuthenticatorProvider extends ChangeNotifier {
   late final FirebaseAuth _auth;
   late final DatabaseService _databaseService;
+  
 
   AuthenticatorProvider() {
     _auth = FirebaseAuth.instance;
     _databaseService = GetIt.instance.get<DatabaseService>();
+
+    _auth.authStateChanges().listen((_user) {
+      if (_user != null) {
+         _databaseService.updateUserLastActiveTime(_user.uid);
+      } else {
+        
+      }
+    });
   }
 
-  Future<void> loginUsingEmailAndPassword(String _email, String _password) async {
+  Future<void> loginUsingEmailAndPassword(
+      String _email, String _password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: _email, password: _password);
       print(_auth.currentUser);
-    } on FirebaseAuthException{
+    } on FirebaseAuthException {
       print("Error al iniciar sesion en Firebase");
-    } catch(e){
+    } catch (e) {
       print(e);
     }
   }
